@@ -27,157 +27,206 @@ const SubjectProgressCard = ({ subject }) => {
   const [showFeedback, setShowFeedback] = useState(false);
 
   const getSubjectData = (subjectName) => {
-  if (subjectName === 'Física') {
-    return {
-      description: 'La física es el estudio de la materia, el movimiento, la energía y la fuerza. Aquí puedes explorar videos, artículos y ejercicios por tema.',
-      unitTitles: [
-        'Unidad 1: Movimiento en una dimensión',
-        'Unidad 2: Movimiento en dos dimensiones',
-        'Unidad 3: Fuerzas y leyes del movimiento de Newton',
-        'Unidad 4: Fuerza centrípeta y gravitación',
-        'Unidad 5: Trabajo y energía',
-      ],
-      lessons: [
-        // Unidad 1 (sin cambios)
-        [
-          { type: 'video', url: 'https://youtu.be/5Q2bRM2Lj3U', title: 'Introducción a la física: Movimiento en una dimensión' },
-          'Desplazamiento, velocidad y tiempo',
-          'Aceleración y movimiento uniformemente acelerado',
-          'Caída libre y tiro vertical',
-          'Gráficas de movimiento'
+    if (subjectName === 'Física') {
+      return {
+        description: 'La física es el estudio de la materia, el movimiento, la energía y la fuerza. Aquí puedes explorar videos, artículos y ejercicios por tema.',
+        unitTitles: [
+          'Unidad 1: Movimiento en una dimensión',
+          'Unidad 2: Movimiento en dos dimensiones',
+          'Unidad 3: Fuerzas y leyes del movimiento de Newton',
+          'Unidad 4: Fuerza centrípeta y gravitación',
+          'Unidad 5: Trabajo y energía',
         ],
-        // ✅ Unidad 2 — NUEVO VIDEO
-        [
-          { type: 'video', url: 'https://youtu.be/IvxFRJcWZbQ', title: 'La refracción y la ley de Snell' },
-          'Índice de refracción',
-          'Aplicaciones de la ley de Snell',
-          'Reflexión total interna',
-          'Lentes y formación de imágenes'
-        ],
-        // Unidades 3-5 (puedes mantenerlas o ajustarlas)
-        [
-          'Primera ley de Newton (inercia)',
-          'Segunda ley de Newton (F = ma)',
-          'Tercera ley de Newton (acción-reacción)',
-          'Fuerza normal y tensión',
-          'Fricción y planos inclinados'
-        ],
-        [
-          'Movimiento circular uniforme',
-          'Aceleración centrípeta',
-          'Ley de gravitación universal'
-        ],
-        [
-          'Trabajo mecánico',
-          'Energía cinética y potencial',
-          'Teorema del trabajo y la energía',
-          'Potencia'
-        ],
-      ],
-      quizzes: {
-        // Unidad 1 (sin cambios)
-        1: {
-          question: "¿Qué magnitud física describe el cambio de posición de un objeto?",
-          options: ["Velocidad", "Aceleración", "Desplazamiento", "Tiempo"],
-          correct: 2,
-          explanation: "El desplazamiento es el cambio de posición de un objeto respecto a un punto de referencia."
-        },
-        // ✅ Unidad 2 — NUEVO QUIZ
-        2: {
-          question: "¿Qué establece la ley de Snell?",
-          options: [
-            "La relación entre ángulo de incidencia y ángulo de reflexión",
-            "La relación entre los índices de refracción y los ángulos de incidencia y refracción",
-            "La velocidad de la luz en el vacío",
-            "La energía de un fotón"
+        lessons: [
+          [
+            { type: 'video', url: 'https://youtu.be/5Q2bRM2Lj3U', title: 'Introducción a la física: Movimiento en una dimensión' },
+            'Desplazamiento, velocidad y tiempo',
+            'Aceleración y movimiento uniformemente acelerado',
+            'Caída libre y tiro vertical',
+            'Gráficas de movimiento'
           ],
-          correct: 1,
-          explanation: "La ley de Snell establece que n₁·sen(θ₁) = n₂·sen(θ₂), donde n es el índice de refracción y θ los ángulos."
-        }
-      }
-    };
-  } else if (subjectName === 'Matemáticas') {
-    return {
-      description: 'Domina los fundamentos del razonamiento matemático, desde el álgebra hasta el cálculo diferencial, paso a paso.',
-      unitTitles: [
-        'Unidad 1: Álgebra básica',
-        'Unidad 2: Ecuaciones y funciones',
-        'Unidad 3: Geometría analítica',
-        'Unidad 4: Trigonometría',
-        'Unidad 5: Cálculo diferencial',
-      ],
-      lessons: [
-        // Unidad 1 (sin cambios)
-        [
-          { type: 'video', url: 'https://youtu.be/EKeMeKv8c-I', title: 'Números reales y propiedades' },
-          'Operaciones con polinomios',
-          'Productos notables',
-          'Factorización básica',
-          'Fracciones algebraicas'
-        ],
-        // ✅ Unidad 2 — NUEVO VIDEO
-        [
-          { type: 'video', url: 'https://youtu.be/o70Gpg1bVNc', title: 'Introducción a las ecuaciones lineales de dos variables' },
-          'Forma estándar y pendiente-intersección',
-          'Gráfica de ecuaciones lineales',
-          'Sistemas de ecuaciones 2x2',
-          'Método de sustitución y eliminación'
-        ],
-        // Unidades 3-5 (sin cambios)
-        [
-          'Distancia entre dos puntos',
-          'Punto medio y pendiente',
-          'Ecuación de la recta (forma punto-pendiente)',
-          'Circunferencia: ecuación canónica',
-          'Parábola y sus elementos'
-        ],
-        [
-          'Razones trigonométricas (seno, coseno, tangente)',
-          'Resolución de triángulos rectángulos',
-          'Ley de senos y ley de cosenos',
-          'Funciones trigonométricas en el círculo unitario',
-          'Identidades trigonométricas básicas'
-        ],
-        [
-          'Concepto de límite',
-          'Límites laterales y continuidad',
-          'Derivada como razón de cambio',
-          'Reglas de derivación (potencia, suma, producto)',
-          'Aplicaciones: máximos y mínimos'
-        ],
-      ],
-      quizzes: {
-        // Unidad 1 (sin cambios)
-        1: {
-          question: "¿Cuál de los siguientes NO es un número real?",
-          options: ["√4", "π", "√(-1)", "-3.5"],
-          correct: 2,
-          explanation: "√(-1) es un número imaginario, no pertenece al conjunto de los números reales."
-        },
-        // ✅ Unidad 2 — NUEVO QUIZ
-        2: {
-          question: "¿Cuál de las siguientes es una ecuación lineal en dos variables?",
-          options: [
-            "x² + y = 5",
-            "xy = 6",
-            "2x + 3y = 7",
-            "x + y² = 4"
+          [
+            { type: 'video', url: 'https://youtu.be/IvxFRJcWZbQ', title: 'La refracción y la ley de Snell' },
+            'Índice de refracción',
+            'Aplicaciones de la ley de Snell',
+            'Reflexión total interna',
+            'Lentes y formación de imágenes'
           ],
-          correct: 2,
-          explanation: "Una ecuación lineal en dos variables tiene la forma ax + by = c, donde a, b, c son constantes y las variables tienen exponente 1."
+          [
+            { type: 'video', url: 'https://youtu.be/d2ImFwlqiEQ', title: 'La primera ley del movimiento de Newton' },
+            'Concepto de inercia',
+            'Sistemas de referencia inerciales',
+            'Equilibrio de fuerzas',
+            'Aplicaciones cotidianas'
+          ],
+          [
+            { type: 'video', url: 'https://youtu.be/Qo4FKljcncU', title: 'Introducción al magnetismo' },
+            'Polos magnéticos',
+            'Campo magnético terrestre',
+            'Fuerza magnética sobre cargas en movimiento',
+            'Electroimanes'
+          ],
+          [
+            { type: 'video', url: 'https://youtu.be/YijfA07slss', title: 'Ondas electromagnéticas y el espectro electromagnético' },
+            'Naturaleza de las ondas EM',
+            'Espectro: radio, microondas, infrarrojo, visible, UV, rayos X, gamma',
+            'Velocidad de la luz',
+            'Aplicaciones tecnológicas'
+          ],
+        ],
+        quizzes: {
+          1: {
+            question: "¿Qué magnitud física describe el cambio de posición de un objeto?",
+            options: ["Velocidad", "Aceleración", "Desplazamiento", "Tiempo"],
+            correct: 2,
+            explanation: "El desplazamiento es el cambio de posición de un objeto respecto a un punto de referencia."
+          },
+          2: {
+            question: "¿Qué establece la ley de Snell?",
+            options: [
+              "La relación entre ángulo de incidencia y ángulo de reflexión",
+              "La relación entre los índices de refracción y los ángulos de incidencia y refracción",
+              "La velocidad de la luz en el vacío",
+              "La energía de un fotón"
+            ],
+            correct: 1,
+            explanation: "La ley de Snell establece que n₁·sen(θ₁) = n₂·sen(θ₂), donde n es el índice de refracción y θ los ángulos."
+          },
+          3: {
+            question: "Según la primera ley de Newton, un objeto en reposo permanece en reposo si:",
+            options: [
+              "No actúa ninguna fuerza sobre él",
+              "La fuerza neta es cero",
+              "Está en el espacio exterior",
+              "Tiene masa muy pequeña"
+            ],
+            correct: 1,
+            explanation: "La primera ley (ley de inercia) dice que un objeto mantiene su estado de reposo o movimiento rectilíneo uniforme si la fuerza neta es cero."
+          },
+          4: {
+            question: "¿Qué genera un campo magnético?",
+            options: [
+              "Cualquier carga eléctrica en reposo",
+              "Cargas eléctricas en movimiento",
+              "Materiales no metálicos",
+              "La gravedad"
+            ],
+            correct: 1,
+            explanation: "Los campos magnéticos son generados por cargas eléctricas en movimiento, como corrientes eléctricas."
+          },
+          5: {
+            question: "¿Cuál de las siguientes ondas electromagnéticas tiene mayor frecuencia?",
+            options: [
+              "Ondas de radio",
+              "Luz visible",
+              "Rayos X",
+              "Microondas"
+            ],
+            correct: 2,
+            explanation: "En el espectro electromagnético, los rayos X tienen mayor frecuencia que la luz visible, microondas y ondas de radio."
+          }
         }
-      }
-    };
-  } else {
-    const titles = ['Unidad 1', 'Unidad 2', 'Unidad 3', 'Unidad 4', 'Unidad 5'];
-    const lessons = titles.map(() => ['Lección introductoria']);
-    return {
-      description: `Contenido introductorio de ${subjectName}.`,
-      unitTitles: titles,
-      lessons,
-      quizzes: {}
-    };
-  }
+      };
+    } else if (subjectName === 'Matemáticas') {
+      return {
+        description: 'Domina los fundamentos del razonamiento matemático, desde el álgebra hasta el cálculo diferencial, paso a paso.',
+        unitTitles: [
+          'Unidad 1: Álgebra básica',
+          'Unidad 2: Ecuaciones y funciones',
+          'Unidad 3: Geometría analítica',
+          'Unidad 4: Trigonometría',
+          'Unidad 5: Cálculo diferencial',
+        ],
+        lessons: [
+          [
+            { type: 'video', url: 'https://youtu.be/EKeMeKv8c-I', title: 'Números reales y propiedades' },
+            'Operaciones con polinomios',
+            'Productos notables',
+            'Factorización básica',
+            'Fracciones algebraicas'
+          ],
+          [
+            { type: 'video', url: 'https://youtu.be/o70Gpg1bVNc', title: 'Introducción a las ecuaciones lineales de dos variables' },
+            'Forma estándar y pendiente-intersección',
+            'Gráfica de ecuaciones lineales',
+            'Sistemas de ecuaciones 2x2',
+            'Método de sustitución y eliminación'
+          ],
+          [
+            { type: 'video', url: 'https://youtu.be/LAkneQR6ig0', title: 'Introducción a logaritmos' },
+            'Definición de logaritmo',
+            'Propiedades básicas',
+            'Logaritmos comunes y naturales',
+            'Ecuaciones logarítmicas simples'
+          ],
+          [
+            { type: 'video', url: 'https://youtu.be/stFQ7TDaivc', title: 'Introducción a la división de polinomios' },
+            'División larga de polinomios',
+            'División sintética (Regla de Ruffini)',
+            'Teorema del residuo',
+            'Factorización mediante división'
+          ],
+          [
+            { type: 'video', url: 'https://youtu.be/PXboI-Fogbg', title: 'Introducción a las matrices' },
+            'Definición y notación',
+            'Operaciones básicas: suma y multiplicación por escalar',
+            'Multiplicación de matrices',
+            'Aplicaciones en sistemas de ecuaciones'
+          ],
+        ],
+        quizzes: {
+          1: {
+            question: "¿Cuál de los siguientes NO es un número real?",
+            options: ["√4", "π", "√(-1)", "-3.5"],
+            correct: 2,
+            explanation: "√(-1) es un número imaginario, no pertenece al conjunto de los números reales."
+          },
+          2: {
+            question: "¿Cuál de las siguientes es una ecuación lineal en dos variables?",
+            options: [
+              "x² + y = 5",
+              "xy = 6",
+              "2x + 3y = 7",
+              "x + y² = 4"
+            ],
+            correct: 2,
+            explanation: "Una ecuación lineal en dos variables tiene la forma ax + by = c, donde a, b, c son constantes y las variables tienen exponente 1."
+          },
+          3: {
+            question: "¿Cuál es el valor de log₁₀(100)?",
+            options: ["1", "2", "10", "100"],
+            correct: 1,
+            explanation: "log₁₀(100) = 2 porque 10² = 100."
+          },
+          4: {
+            question: "Al dividir x² + 3x + 2 entre x + 1, el cociente es:",
+            options: ["x + 1", "x + 2", "x - 1", "x - 2"],
+            correct: 1,
+            explanation: "(x² + 3x + 2) ÷ (x + 1) = x + 2, ya que (x + 1)(x + 2) = x² + 3x + 2."
+          },
+          5: {
+            question: "¿Cuál es el resultado de multiplicar una matriz 2×3 por una matriz 3×2?",
+            options: [
+              "Una matriz 2×2",
+              "Una matriz 3×3",
+              "No se puede multiplicar",
+              "Una matriz 2×3"
+            ],
+            correct: 0,
+            explanation: "El producto de una matriz m×n por una n×p da una matriz m×p. Aquí: 2×3 × 3×2 → 2×2."
+          }
+        }
+      };
+    } else {
+      const titles = ['Unidad 1', 'Unidad 2', 'Unidad 3', 'Unidad 4', 'Unidad 5'];
+      const lessons = titles.map(() => ['Lección introductoria']);
+      return {
+        description: `Contenido introductorio de ${subjectName}.`,
+        unitTitles: titles,
+        lessons,
+        quizzes: {}
+      };
+    }
   };
 
   useEffect(() => {
@@ -216,7 +265,6 @@ const SubjectProgressCard = ({ subject }) => {
 
   const handleContinue = (unitId) => {
     setViewMode({ type: 'unit', id: unitId });
-    // Reset quiz state when changing unit
     setSelectedAnswer(null);
     setShowFeedback(false);
   };
@@ -234,11 +282,11 @@ const SubjectProgressCard = ({ subject }) => {
   };
 
   const handleAnswerSelect = (index) => {
-    setSelectedAnswer(index);
+    if (!showFeedback) setSelectedAnswer(index);
   };
 
-  const handleSubmit = (quiz) => {
-    setShowFeedback(true);
+  const handleSubmit = () => {
+    if (selectedAnswer !== null) setShowFeedback(true);
   };
 
   const handleResetQuiz = () => {
@@ -348,8 +396,6 @@ const SubjectProgressCard = ({ subject }) => {
     const unit = units.find((u) => u.id === viewMode.id);
     if (!unit) return <div className="p-6">Unidad no encontrada</div>;
 
-    const { quiz } = unit;
-
     return (
       <div className="bg-white rounded-lg shadow p-6">
         <button
@@ -368,17 +414,17 @@ const SubjectProgressCard = ({ subject }) => {
           {unit.lessons.map((lesson, idx) => renderLesson(lesson, idx, true))}
         </div>
 
-        {/* Quiz solo para Unidad 1 */}
-        {quiz && (
+        {/* Quiz (solo si existe) */}
+        {unit.quiz && (
           <div className="mt-8 p-4 border border-green-200 bg-green-50 rounded-lg">
             <h3 className="font-bold text-lg text-[#2e7d32] mb-3">Ejercicio de práctica</h3>
-            <p className="mb-4">{quiz.question}</p>
+            <p className="mb-4">{unit.quiz.question}</p>
             <div className="space-y-2 mb-4">
-              {quiz.options.map((option, idx) => {
+              {unit.quiz.options.map((option, idx) => {
                 let bgColor = 'bg-white';
                 let border = 'border-gray-300';
                 if (showFeedback) {
-                  if (idx === quiz.correct) {
+                  if (idx === unit.quiz.correct) {
                     bgColor = 'bg-green-100';
                     border = 'border-green-500';
                   } else if (selectedAnswer === idx) {
@@ -393,7 +439,7 @@ const SubjectProgressCard = ({ subject }) => {
                 return (
                   <button
                     key={idx}
-                    onClick={() => !showFeedback && handleAnswerSelect(idx)}
+                    onClick={() => handleAnswerSelect(idx)}
                     disabled={showFeedback}
                     className={`w-full text-left p-3 rounded border ${border} ${bgColor} transition-colors`}
                   >
@@ -405,7 +451,7 @@ const SubjectProgressCard = ({ subject }) => {
 
             {!showFeedback ? (
               <button
-                onClick={() => handleSubmit(quiz)}
+                onClick={handleSubmit}
                 disabled={selectedAnswer === null}
                 className={`px-4 py-2 rounded font-medium ${
                   selectedAnswer === null
@@ -417,7 +463,7 @@ const SubjectProgressCard = ({ subject }) => {
               </button>
             ) : (
               <div className="space-y-3">
-                {selectedAnswer === quiz.correct ? (
+                {selectedAnswer === unit.quiz.correct ? (
                   <div className="text-green-700 font-medium flex items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
@@ -429,10 +475,10 @@ const SubjectProgressCard = ({ subject }) => {
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
                     </svg>
-                    Incorrecto. La respuesta correcta es: {quiz.options[quiz.correct]}
+                    Incorrecto. La respuesta correcta es: {unit.quiz.options[unit.quiz.correct]}
                   </div>
                 )}
-                <p className="text-sm text-gray-700">{quiz.explanation}</p>
+                <p className="text-sm text-gray-700">{unit.quiz.explanation}</p>
                 <button
                   onClick={handleResetQuiz}
                   className="mt-2 text-[#4caf50] hover:text-[#2e7d32] font-medium"
@@ -521,26 +567,26 @@ const SubjectProgressCard = ({ subject }) => {
 const fetchSubjects = async () => {
   return new Promise((resolve) => {
     setTimeout(() => {
-            const mockSubjects = [
-              {
-                _id: '60a7d5b1b4f4e7c3e3a4b6c1',
-                nombre: 'Matemáticas',
-                descripcion: 'Aprende los fundamentos de la matemática.',
-                banner: '/banner_mat.jpeg',
-                nivel: 'Básico',
-                temas: ['Álgebra', 'Geometría', 'Cálculo'],
-                estudiantes: 120,
-              },
-              {
-                _id: '60a7d5b1b4f4e7c3e3a4b6c2',
-                nombre: 'Física',
-                descripcion: 'Explora los principios de la física.',
-                banner: '/banner_fisica.jpg',
-                nivel: 'Avanzado',
-                temas: ['Mecánica', 'Óptica', 'Termodinámica'],
-                estudiantes: 80,
-              },
-            ];
+      const mockSubjects = [
+        {
+          _id: '60a7d5b1b4f4e7c3e3a4b6c1',
+          nombre: 'Matemáticas',
+          descripcion: 'Aprende los fundamentos de la matemática.',
+          icono: 'Calculator',
+          nivel: 'Básico',
+          temas: ['Álgebra', 'Geometría', 'Cálculo'],
+          estudiantes: 120,
+        },
+        {
+          _id: '60a7d5b1b4f4e7c3e3a4b6c2',
+          nombre: 'Física',
+          descripcion: 'Explora los principios de la física.',
+          icono: 'Atom',
+          nivel: 'Avanzado',
+          temas: ['Mecánica', 'Óptica', 'Termodinámica'],
+          estudiantes: 80,
+        },
+      ];
       resolve(mockSubjects);
     }, 500);
   });
@@ -600,40 +646,28 @@ export default function SubjectsPage() {
             key={subject._id}
             className="rounded-2xl shadow-md border bg-white overflow-hidden flex flex-col"
           >
-            {/* Banner superior */}
-            <div className="relative">
-              {/* Botón de nivel arriba del banner */}
-              <span className="absolute top-4 right-4 z-10 bg-white text-xs px-3 py-1 rounded-full shadow text-gray-700 border">
+            <div
+              className="relative flex flex-col items-center justify-center py-8"
+              style={{
+                background: subject.nivel === 'Avanzado' ? '#b2dfdb' : '#dcedc8',
+              }}
+            >
+              {ICONS[subject.icono] || (
+                subject.icono && subject.icono.startsWith('http') ? (
+                  <img
+                    src={subject.icono}
+                    alt={subject.nombre}
+                    className="w-14 h-14 object-contain"
+                  />
+                ) : (
+                  <span className="w-14 h-14 bg-gray-200 rounded-full flex items-center justify-center text-2xl">
+                    ?
+                  </span>
+                )
+              )}
+              <span className="absolute top-4 right-4 bg-white text-xs px-3 py-1 rounded-full shadow text-gray-700 border">
                 {subject.nivel}
               </span>
-              {subject.banner ? (
-                <img
-                  src={subject.banner}
-                  alt={`Banner de ${subject.nombre}`}
-                  className="w-full h-32 object-cover"
-                />
-              ) : (
-                <div
-                  className="flex flex-col items-center justify-center py-8"
-                  style={{
-                    background: subject.nivel === 'Avanzado' ? '#b2dfdb' : '#dcedc8',
-                  }}
-                >
-                  {ICONS[subject.icono] || (
-                    subject.icono && subject.icono.startsWith('http') ? (
-                      <img
-                        src={subject.icono}
-                        alt={subject.nombre}
-                        className="w-14 h-14 object-contain"
-                      />
-                    ) : (
-                      <span className="w-14 h-14 bg-gray-200 rounded-full flex items-center justify-center text-2xl">
-                        ?
-                      </span>
-                    )
-                  )}
-                </div>
-              )}
             </div>
             <div className="p-6 flex-1 flex flex-col">
               <h3 className="text-base font-bold mb-1">{subject.nombre}</h3>
