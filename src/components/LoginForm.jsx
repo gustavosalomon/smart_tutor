@@ -36,6 +36,7 @@ export default function LoginForm() {
   const [isLogin, setIsLogin] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
+    name: '',
     email: '',
     password: '',
     dni: ''
@@ -61,6 +62,7 @@ export default function LoginForm() {
     if (!formData.password) newErrors.password = 'Contraseña es requerida';
 
     // Validación específica para el registro
+    if (!isLogin && !formData.name) newErrors.name = 'Nombre y Apellido es requerido';
     if (!isLogin && !formData.dni) newErrors.dni = 'DNI es requerido';
     
     setErrors(newErrors);
@@ -80,7 +82,7 @@ export default function LoginForm() {
     const endpoint = isLogin ? '/api/login' : '/api/register';
     const payload = isLogin 
       ? { email: formData.email, password: formData.password } // Login solo requiere email y password
-      : { email: formData.email, password: formData.password, dni: formData.dni }; // Registro requiere DNI
+      : { name: formData.name, email: formData.email, password: formData.password, dni: formData.dni }; // Registro requiere nombre, DNI
 
     try {
       const response = await fetch(`${API_BASE_URL}${endpoint}`, {
@@ -102,9 +104,30 @@ export default function LoginForm() {
         // Si es registro, cambiamos a la vista de login automáticamente
         if (!isLogin) {
           setIsLogin(true);
-          setFormData({ email: '', password: '', dni: '' });
+          setFormData({ name: '', email: '', password: '', dni: '' });
         } else {
-          // Login exitoso, navegar al dashboard
+          // Login exitoso, guardar token y obtener datos del usuario
+          if (data.token) {
+            localStorage.setItem('token', data.token);
+            
+            // Obtener datos del usuario con el token
+            try {
+              const userResponse = await fetch(`${API_BASE_URL}/api/me`, {
+                headers: {
+                  'Authorization': `Bearer ${data.token}`
+                }
+              });
+              
+              if (userResponse.ok) {
+                const userData = await userResponse.json();
+                localStorage.setItem('user', JSON.stringify(userData));
+              }
+            } catch (error) {
+              console.error('Error al obtener datos del usuario:', error);
+            }
+          }
+          
+          // Navegar al dashboard
           setTimeout(() => {
             navigate('/dashboard');
           }, 1500);
@@ -127,7 +150,7 @@ export default function LoginForm() {
   // Función para alternar entre Login y Registro
   const toggleMode = () => {
     setIsLogin(prev => !prev);
-    setFormData({ email: '', password: '', dni: '' }); // Limpiar campos
+    setFormData({ name: '', email: '', password: '', dni: '' }); // Limpiar campos
     setErrors({}); // Limpiar errores
     setMessage(null); // Limpiar mensajes
   };
@@ -171,6 +194,30 @@ export default function LoginForm() {
 
         <form onSubmit={handleSubmit} className="space-y-4">
           
+          {/* Campo Nombre y Apellido (Solo en Registro) */}
+          {!isLogin && (
+            <div className="input_container">
+              <label className="input_label text-xs font-semibold text-gray-600 mb-1 block">
+                Nombre y Apellido
+              </label>
+              <div className="relative">
+                <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  placeholder="Ingrese su nombre completo"
+                  className={`input_field w-full pl-10 pr-4 py-3 border rounded-lg outline-none transition-all ${
+                    errors.name ? 'border-red-500' : 'border-gray-300'
+                  } focus:border-[#2e7d32] focus:ring-2 focus:ring-[#c8e6c9]`}
+                  disabled={loading}
+                />
+              </div>
+              {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
+            </div>
+          )}
+
           {/* Campo DNI (Solo en Registro) */}
           {!isLogin && (
             <div className="input_container">

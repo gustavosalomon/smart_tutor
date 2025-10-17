@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { 
   LogOut, User, Settings, ArrowLeft, 
   UserCircle, Lock, Bell, Globe, 
-  CreditCard, Shield, Mail, Smartphone,
+  Shield, Smartphone,
   Eye, EyeOff, Save, Trash2
 } from 'lucide-react';
 
@@ -25,11 +25,11 @@ export default function SettingsPage() {
         <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
           <div className="text-xl font-semibold text-green-700">Smart Tutor</div>
           <nav className="flex gap-6 text-sm text-gray-700">
-            <a className="hover:text-green-700 cursor-pointer" onClick={() => navigate('/dashboard')}>Inicio</a>
-            <a className="hover:text-green-700" href="#">Tutores</a>
-            <a className="hover:text-green-700" href="#">Recursos</a>
-            <a className="hover:text-green-700 cursor-pointer" onClick={() => navigate('/my-progress')}>Mi Progreso</a>
-            <a className="text-green-700 font-semibold cursor-pointer">Configuración</a>
+            <button className="hover:text-green-700 cursor-pointer bg-transparent border-none" onClick={() => navigate('/dashboard')}>Inicio</button>
+            <button className="hover:text-green-700 bg-transparent border-none cursor-pointer">Tutores</button>
+            <button className="hover:text-green-700 bg-transparent border-none cursor-pointer">Recursos</button>
+            <button className="hover:text-green-700 cursor-pointer bg-transparent border-none" onClick={() => navigate('/my-progress')}>Mi Progreso</button>
+            <button className="text-green-700 font-semibold cursor-pointer bg-transparent border-none">Configuración</button>
           </nav>
           <div className="flex items-center gap-4">
             <button className="relative" aria-label="Notificaciones">
