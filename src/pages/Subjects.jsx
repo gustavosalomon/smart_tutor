@@ -27,76 +27,157 @@ const SubjectProgressCard = ({ subject }) => {
   const [showFeedback, setShowFeedback] = useState(false);
 
   const getSubjectData = (subjectName) => {
-    if (subjectName === 'Física') {
-      return {
-        description: 'La física es el estudio de la materia, el movimiento, la energía y la fuerza. Aquí puedes explorar videos, artículos y ejercicios por tema.',
-        unitTitles: [
-          'Unidad 1: Movimiento en una dimensión',
-          'Unidad 2: Movimiento en dos dimensiones',
-          'Unidad 3: Fuerzas y leyes del movimiento de Newton',
-          'Unidad 4: Fuerza centrípeta y gravitación',
-          'Unidad 5: Trabajo y energía',
+  if (subjectName === 'Física') {
+    return {
+      description: 'La física es el estudio de la materia, el movimiento, la energía y la fuerza. Aquí puedes explorar videos, artículos y ejercicios por tema.',
+      unitTitles: [
+        'Unidad 1: Movimiento en una dimensión',
+        'Unidad 2: Movimiento en dos dimensiones',
+        'Unidad 3: Fuerzas y leyes del movimiento de Newton',
+        'Unidad 4: Fuerza centrípeta y gravitación',
+        'Unidad 5: Trabajo y energía',
+      ],
+      lessons: [
+        // Unidad 1 (sin cambios)
+        [
+          { type: 'video', url: 'https://youtu.be/5Q2bRM2Lj3U', title: 'Introducción a la física: Movimiento en una dimensión' },
+          'Desplazamiento, velocidad y tiempo',
+          'Aceleración y movimiento uniformemente acelerado',
+          'Caída libre y tiro vertical',
+          'Gráficas de movimiento'
         ],
-        lessons: [
-          [
-            { type: 'video', url: 'https://youtu.be/5Q2bRM2Lj3U', title: 'Introducción a la física: Movimiento en una dimensión' }
+        // ✅ Unidad 2 — NUEVO VIDEO
+        [
+          { type: 'video', url: 'https://youtu.be/IvxFRJcWZbQ', title: 'La refracción y la ley de Snell' },
+          'Índice de refracción',
+          'Aplicaciones de la ley de Snell',
+          'Reflexión total interna',
+          'Lentes y formación de imágenes'
+        ],
+        // Unidades 3-5 (puedes mantenerlas o ajustarlas)
+        [
+          'Primera ley de Newton (inercia)',
+          'Segunda ley de Newton (F = ma)',
+          'Tercera ley de Newton (acción-reacción)',
+          'Fuerza normal y tensión',
+          'Fricción y planos inclinados'
+        ],
+        [
+          'Movimiento circular uniforme',
+          'Aceleración centrípeta',
+          'Ley de gravitación universal'
+        ],
+        [
+          'Trabajo mecánico',
+          'Energía cinética y potencial',
+          'Teorema del trabajo y la energía',
+          'Potencia'
+        ],
+      ],
+      quizzes: {
+        // Unidad 1 (sin cambios)
+        1: {
+          question: "¿Qué magnitud física describe el cambio de posición de un objeto?",
+          options: ["Velocidad", "Aceleración", "Desplazamiento", "Tiempo"],
+          correct: 2,
+          explanation: "El desplazamiento es el cambio de posición de un objeto respecto a un punto de referencia."
+        },
+        // ✅ Unidad 2 — NUEVO QUIZ
+        2: {
+          question: "¿Qué establece la ley de Snell?",
+          options: [
+            "La relación entre ángulo de incidencia y ángulo de reflexión",
+            "La relación entre los índices de refracción y los ángulos de incidencia y refracción",
+            "La velocidad de la luz en el vacío",
+            "La energía de un fotón"
           ],
-          // ... otras unidades sin cambios
-        ],
-        quizzes: {
-          1: {
-            question: "¿Qué magnitud física describe el cambio de posición de un objeto?",
-            options: [
-              "Velocidad",
-              "Aceleración",
-              "Desplazamiento",
-              "Tiempo"
-            ],
-            correct: 2, // índice base 0 → "Desplazamiento"
-            explanation: "El desplazamiento es el cambio de posición de un objeto respecto a un punto de referencia."
-          }
+          correct: 1,
+          explanation: "La ley de Snell establece que n₁·sen(θ₁) = n₂·sen(θ₂), donde n es el índice de refracción y θ los ángulos."
         }
-      };
-    } else if (subjectName === 'Matemáticas') {
-      return {
-        description: 'Domina los fundamentos del razonamiento matemático, desde el álgebra hasta el cálculo diferencial, paso a paso.',
-        unitTitles: [
-          'Unidad 1: Álgebra básica',
-          'Unidad 2: Ecuaciones y funciones',
-          'Unidad 3: Geometría analítica',
-          'Unidad 4: Trigonometría',
-          'Unidad 5: Cálculo diferencial',
+      }
+    };
+  } else if (subjectName === 'Matemáticas') {
+    return {
+      description: 'Domina los fundamentos del razonamiento matemático, desde el álgebra hasta el cálculo diferencial, paso a paso.',
+      unitTitles: [
+        'Unidad 1: Álgebra básica',
+        'Unidad 2: Ecuaciones y funciones',
+        'Unidad 3: Geometría analítica',
+        'Unidad 4: Trigonometría',
+        'Unidad 5: Cálculo diferencial',
+      ],
+      lessons: [
+        // Unidad 1 (sin cambios)
+        [
+          { type: 'video', url: 'https://youtu.be/EKeMeKv8c-I', title: 'Números reales y propiedades' },
+          'Operaciones con polinomios',
+          'Productos notables',
+          'Factorización básica',
+          'Fracciones algebraicas'
         ],
-        lessons: [
-          [
-            { type: 'video', url: 'https://youtu.be/EKeMeKv8c-I', title: 'Números reales y propiedades' }
+        // ✅ Unidad 2 — NUEVO VIDEO
+        [
+          { type: 'video', url: 'https://youtu.be/o70Gpg1bVNc', title: 'Introducción a las ecuaciones lineales de dos variables' },
+          'Forma estándar y pendiente-intersección',
+          'Gráfica de ecuaciones lineales',
+          'Sistemas de ecuaciones 2x2',
+          'Método de sustitución y eliminación'
+        ],
+        // Unidades 3-5 (sin cambios)
+        [
+          'Distancia entre dos puntos',
+          'Punto medio y pendiente',
+          'Ecuación de la recta (forma punto-pendiente)',
+          'Circunferencia: ecuación canónica',
+          'Parábola y sus elementos'
+        ],
+        [
+          'Razones trigonométricas (seno, coseno, tangente)',
+          'Resolución de triángulos rectángulos',
+          'Ley de senos y ley de cosenos',
+          'Funciones trigonométricas en el círculo unitario',
+          'Identidades trigonométricas básicas'
+        ],
+        [
+          'Concepto de límite',
+          'Límites laterales y continuidad',
+          'Derivada como razón de cambio',
+          'Reglas de derivación (potencia, suma, producto)',
+          'Aplicaciones: máximos y mínimos'
+        ],
+      ],
+      quizzes: {
+        // Unidad 1 (sin cambios)
+        1: {
+          question: "¿Cuál de los siguientes NO es un número real?",
+          options: ["√4", "π", "√(-1)", "-3.5"],
+          correct: 2,
+          explanation: "√(-1) es un número imaginario, no pertenece al conjunto de los números reales."
+        },
+        // ✅ Unidad 2 — NUEVO QUIZ
+        2: {
+          question: "¿Cuál de las siguientes es una ecuación lineal en dos variables?",
+          options: [
+            "x² + y = 5",
+            "xy = 6",
+            "2x + 3y = 7",
+            "x + y² = 4"
           ],
-          // ... otras unidades sin cambios
-        ],
-        quizzes: {
-          1: {
-            question: "¿Cuál de los siguientes NO es un número real?",
-            options: [
-              "√4",
-              "π",
-              "√(-1)",
-              "-3.5"
-            ],
-            correct: 2, // √(-1) = i → no es real
-            explanation: "√(-1) es un número imaginario, no pertenece al conjunto de los números reales."
-          }
+          correct: 2,
+          explanation: "Una ecuación lineal en dos variables tiene la forma ax + by = c, donde a, b, c son constantes y las variables tienen exponente 1."
         }
-      };
-    } else {
-      const titles = ['Unidad 1', 'Unidad 2', 'Unidad 3', 'Unidad 4', 'Unidad 5'];
-      const lessons = titles.map(() => ['Lección introductoria']);
-      return {
-        description: `Contenido introductorio de ${subjectName}.`,
-        unitTitles: titles,
-        lessons,
-        quizzes: {}
-      };
-    }
+      }
+    };
+  } else {
+    const titles = ['Unidad 1', 'Unidad 2', 'Unidad 3', 'Unidad 4', 'Unidad 5'];
+    const lessons = titles.map(() => ['Lección introductoria']);
+    return {
+      description: `Contenido introductorio de ${subjectName}.`,
+      unitTitles: titles,
+      lessons,
+      quizzes: {}
+    };
+  }
   };
 
   useEffect(() => {
