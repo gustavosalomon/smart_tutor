@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { TrendingUp, Loader } from 'lucide-react';
 import { getDailyProgress } from '../services/api';
 
-export default function WeeklyPerformanceChart() {
+export default function DailyPerformanceChart() {
   const [data, setData] = useState([
     { day: 'Lun 11', matemáticas: 0, física: 0 },
     { day: 'Mar 12', matemáticas: 0, física: 0 },
@@ -111,7 +111,7 @@ export default function WeeklyPerformanceChart() {
     return chartHeight - padding - ((value - minValue) / (maxValue - minValue)) * (chartHeight - 2 * padding);
   };
 
-  // Calcular posición X para cada semana
+  // Calcular posición X para cada día
   const getX = (index) => {
     const chartWidth = 600;
     const padding = 40;

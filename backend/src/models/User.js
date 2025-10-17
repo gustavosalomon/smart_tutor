@@ -4,11 +4,36 @@ import mongoose from "mongoose";
 // 1️⃣ Sub-esquema para el progreso de cada materia
 // ----------------------
 const progressSchema = new mongoose.Schema({
-  subjectId: { type: mongoose.Schema.Types.ObjectId, ref: "Subject" }, // referencia a la materia
-  completedLessons: { type: Number, default: 0 }, // lecciones completadas
-  totalLessons: { type: Number, default: 0 },     // total de lecciones de la materia
-  lastAccess: { type: Date, default: Date.now },  // última vez que accedió
-  score: { type: Number, default: 0 }            // puntaje o progreso en %
+  subjectId: { type: String, required: true }, // ID de la materia
+  subjectName: { type: String, required: true }, // Nombre de la materia
+  currentUnit: { type: Number, default: 1 }, // Unidad actual
+  completedUnits: [{
+    unitId: Number,
+    completedAt: Date
+  }],
+  completedLessons: [{
+    unitId: Number,
+    lessonIndex: Number,
+    completedAt: Date
+  }],
+  exercises: [{
+    unitId: Number,
+    question: String,
+    answer: String,
+    isCorrect: Boolean,
+    attemptedAt: Date
+  }],
+  quizScores: [{
+    unitId: Number,
+    score: Number,
+    totalQuestions: Number,
+    percentage: Number,
+    attemptedAt: {
+      type: Date,
+      default: Date.now
+    }
+  }],
+  lastAccessed: { type: Date, default: Date.now }
 });
 
 // ----------------------
@@ -20,7 +45,7 @@ const userSchema = new mongoose.Schema({
   email: { type: String, unique: true, required: true },
   password: { type: String, required: true },
   role: { type: String, enum: ["student", "tutor", "admin"], default: "student" },
-  subjects: [progressSchema], // 👈 Aquí se guarda el progreso de cada materia elegida
+  subjects: [progressSchema], // 👈 Aquí se guarda el progreso detallado de cada materia
   createdAt: { type: Date, default: Date.now }
 });
 
@@ -28,4 +53,3 @@ const userSchema = new mongoose.Schema({
 // 3️⃣ Exportar el modelo
 // ----------------------
 export default mongoose.model("User", userSchema);
-
