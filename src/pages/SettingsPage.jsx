@@ -23,7 +23,7 @@ export default function SettingsPage() {
     <div className="min-h-screen bg-gray-50">
       <header className="border-b bg-white">
         <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-          <div className="text-xl font-semibold text-green-700">Smart Tutor</div>
+          <img src="/logodash.png" alt="Smart Tutor Logo" className="h-10 w-auto"/>
           <nav className="flex gap-6 text-sm text-gray-700">
             <button className="hover:text-green-700 cursor-pointer bg-transparent border-none" onClick={() => navigate('/dashboard')}>Inicio</button>
             <button className="hover:text-green-700 bg-transparent border-none cursor-pointer">Tutores</button>
