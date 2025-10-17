@@ -371,7 +371,6 @@ const SubjectProgressCard = ({ subject }) => {
 
   const handleContinue = async (unitId) => {
     setViewMode({ type: 'unit', id: unitId });
-    // Reset quiz state when changing unit
     setSelectedAnswer(null);
     setShowFeedback(false);
     setUsedQuestionIds([]);
@@ -469,7 +468,7 @@ const SubjectProgressCard = ({ subject }) => {
   };
 
   const handleAnswerSelect = (index) => {
-    setSelectedAnswer(index);
+    if (!showFeedback) setSelectedAnswer(index);
   };
 
   const handleSubmit = async (quiz) => {
@@ -764,7 +763,7 @@ const SubjectProgressCard = ({ subject }) => {
                 return (
                   <button
                     key={idx}
-                    onClick={() => !showFeedback && handleAnswerSelect(idx)}
+                    onClick={() => handleAnswerSelect(idx)}
                     disabled={showFeedback}
                     className={`w-full text-left p-3 rounded border ${border} ${bgColor} transition-colors`}
                   >
@@ -913,26 +912,26 @@ const SubjectProgressCard = ({ subject }) => {
 const fetchSubjects = async () => {
   return new Promise((resolve) => {
     setTimeout(() => {
-            const mockSubjects = [
-              {
-                _id: '60a7d5b1b4f4e7c3e3a4b6c1',
-                nombre: 'Matemáticas',
-                descripcion: 'Aprende los fundamentos de la matemática.',
-                banner: '/banner_mat.jpeg',
-                nivel: 'Básico',
-                temas: ['Álgebra', 'Geometría', 'Cálculo'],
-                estudiantes: 120,
-              },
-              {
-                _id: '60a7d5b1b4f4e7c3e3a4b6c2',
-                nombre: 'Física',
-                descripcion: 'Explora los principios de la física.',
-                banner: '/banner_fisica.jpg',
-                nivel: 'Avanzado',
-                temas: ['Mecánica', 'Óptica', 'Termodinámica'],
-                estudiantes: 80,
-              },
-            ];
+      const mockSubjects = [
+        {
+          _id: '60a7d5b1b4f4e7c3e3a4b6c1',
+          nombre: 'Matemáticas',
+          descripcion: 'Aprende los fundamentos de la matemática.',
+          icono: 'Calculator',
+          nivel: 'Básico',
+          temas: ['Álgebra', 'Geometría', 'Cálculo'],
+          estudiantes: 120,
+        },
+        {
+          _id: '60a7d5b1b4f4e7c3e3a4b6c2',
+          nombre: 'Física',
+          descripcion: 'Explora los principios de la física.',
+          icono: 'Atom',
+          nivel: 'Avanzado',
+          temas: ['Mecánica', 'Óptica', 'Termodinámica'],
+          estudiantes: 80,
+        },
+      ];
       resolve(mockSubjects);
     }, 500);
   });
@@ -992,40 +991,28 @@ export default function SubjectsPage() {
             key={subject._id}
             className="rounded-2xl shadow-md border bg-white overflow-hidden flex flex-col"
           >
-            {/* Banner superior */}
-            <div className="relative">
-              {/* Botón de nivel arriba del banner */}
-              <span className="absolute top-4 right-4 z-10 bg-white text-xs px-3 py-1 rounded-full shadow text-gray-700 border">
+            <div
+              className="relative flex flex-col items-center justify-center py-8"
+              style={{
+                background: subject.nivel === 'Avanzado' ? '#b2dfdb' : '#dcedc8',
+              }}
+            >
+              {ICONS[subject.icono] || (
+                subject.icono && subject.icono.startsWith('http') ? (
+                  <img
+                    src={subject.icono}
+                    alt={subject.nombre}
+                    className="w-14 h-14 object-contain"
+                  />
+                ) : (
+                  <span className="w-14 h-14 bg-gray-200 rounded-full flex items-center justify-center text-2xl">
+                    ?
+                  </span>
+                )
+              )}
+              <span className="absolute top-4 right-4 bg-white text-xs px-3 py-1 rounded-full shadow text-gray-700 border">
                 {subject.nivel}
               </span>
-              {subject.banner ? (
-                <img
-                  src={subject.banner}
-                  alt={`Banner de ${subject.nombre}`}
-                  className="w-full h-32 object-cover"
-                />
-              ) : (
-                <div
-                  className="flex flex-col items-center justify-center py-8"
-                  style={{
-                    background: subject.nivel === 'Avanzado' ? '#b2dfdb' : '#dcedc8',
-                  }}
-                >
-                  {ICONS[subject.icono] || (
-                    subject.icono && subject.icono.startsWith('http') ? (
-                      <img
-                        src={subject.icono}
-                        alt={subject.nombre}
-                        className="w-14 h-14 object-contain"
-                      />
-                    ) : (
-                      <span className="w-14 h-14 bg-gray-200 rounded-full flex items-center justify-center text-2xl">
-                        ?
-                      </span>
-                    )
-                  )}
-                </div>
-              )}
             </div>
             <div className="p-6 flex-1 flex flex-col">
               <h3 className="text-base font-bold mb-1">{subject.nombre}</h3>
